@@ -1,5 +1,5 @@
 <div *ngFor="let env of environments">
     <h3>{{ env.environment }}</h3>
-    <div>{{ env.branchName}}</div>
+    <div>{{ env.data.branchName}}</div>
     <app-pod-health [pods]="env.data.pods" [env]="env" [microservice]="microservice"></app-pod-health>
   </div>

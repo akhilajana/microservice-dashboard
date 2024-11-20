@@ -1,17 +1,13 @@
-<!-- <table>
-    <tr>
-      <th>Pod</th>
-      <th>Status</th>
-      <th>System Usage</th>
-      <th>Memory</th>
-    </tr>
-    <tr *ngFor="let pod of pods">
-      <td>{{ pod.podName }}</td>
-      <td>{{ pod.status }}</td>
-      <td>{{ pod.systemUsage }}</td>
-      <td>{{ pod.memory }}</td>
-    </tr>
-  </table> -->
+<div class="row">
+  <div class="col canvas-container">
+    <canvas [id]="healthCanvasId" style="height: 200px;"></canvas>
+  </div>
+  <div class="col canvas-container">
+    <canvas [id]="memoryUsageCanvasId" style="height: 300px;"></canvas>
+  </div>
+  <div class="col canvas-container">
+    <canvas [id]="systemUsageCanvasId" style="height: 300px;"></canvas>
+  </div>
+</div>
   
-  <canvas [id]="memoryUsageCanvasId" style="display: block;"></canvas>
-  <canvas [id]="systemUsageCanvasId" style="display: block;"></canvas>
+

@@ -1,0 +1,25 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.col {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+}
+
+.canvas-container canvas{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.canvas-container{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
