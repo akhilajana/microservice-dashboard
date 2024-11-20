@@ -2,6 +2,7 @@ export interface Pod {
   status: string;
   systemUsage: string;
   memory: string;
+  podName: string;
 }
 
 export interface Environment {
@@ -17,3 +18,4 @@ export interface MicroserviceData {
 export interface HealthData {
   [key: string]: MicroserviceData;
 }
+

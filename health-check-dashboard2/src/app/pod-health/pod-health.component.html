@@ -1,22 +1,17 @@
-<table>
+<!-- <table>
     <tr>
       <th>Pod</th>
       <th>Status</th>
       <th>System Usage</th>
       <th>Memory</th>
     </tr>
-    <tr *ngFor="let pod of pods | keyvalue">
-      <td>{{ pod.key }}</td>
-      <td>{{ pod.value.status }}</td>
-      <td>{{ pod.value.systemUsage }}</td>
-      <td>{{ pod.value.memory }}</td>
+    <tr *ngFor="let pod of pods">
+      <td>{{ pod.podName }}</td>
+      <td>{{ pod.status }}</td>
+      <td>{{ pod.systemUsage }}</td>
+      <td>{{ pod.memory }}</td>
     </tr>
-  </table>
+  </table> -->
   
-  <canvas baseChart
-    [datasets]="chartData"
-    [labels]="chartLabels"
-    [options]="chartOptions"
-    [legend]="chartLegend"
-    [type]="chartType">
-  </canvas>
+  <canvas [id]="memoryUsageCanvasId" style="display: block;"></canvas>
+  <canvas [id]="systemUsageCanvasId" style="display: block;"></canvas>

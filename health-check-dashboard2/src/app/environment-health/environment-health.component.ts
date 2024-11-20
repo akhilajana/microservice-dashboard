@@ -7,5 +7,6 @@ import { Environment } from '../interface/microservice-interfaces';
   styleUrls: ['./environment-health.component.css']
 })
 export class EnvironmentHealthComponent {
-  @Input() environments: { [key: string]: Environment } = {};
+  @Input() environments: any;
+  @Input() microservice: any;
 }

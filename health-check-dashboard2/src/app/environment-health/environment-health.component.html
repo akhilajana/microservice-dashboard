@@ -1,4 +1,5 @@
-<div *ngFor="let env of environments | keyvalue">
-    <h3>{{ env.key }} ({{ env.value.branchName }})</h3>
-    <app-pod-health [pods]="env.value"></app-pod-health>
+<div *ngFor="let env of environments">
+    <h3>{{ env.environment }}</h3>
+    <div>{{ env.branchName}}</div>
+    <app-pod-health [pods]="env.data.pods" [env]="env" [microservice]="microservice"></app-pod-health>
   </div>
