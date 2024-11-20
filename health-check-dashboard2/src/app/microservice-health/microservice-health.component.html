@@ -1,0 +1,5 @@
+<div *ngFor="let microservice of healthData | keyvalue">
+    <h2>{{ microservice.key }}</h2>
+    <!-- <app-environment-health [environments]="microservice.value"></app-environment-health> -->
+    <!-- <app-dependent-services [services]="microservice.value.dependentServices"></app-dependent-services> -->
+  </div>

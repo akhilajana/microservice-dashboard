@@ -1,0 +1,6 @@
+<h3>Dependent Services</h3>
+<ul>
+  <li *ngFor="let service of services">
+    {{ (service | keyvalue)[0].key }}: {{ (service | keyvalue)[0].value }}
+  </li>
+</ul>

@@ -1,0 +1,197 @@
+{
+    "microservice1": {
+      "test2": {
+        "pod1": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod2": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release1"
+      },
+      "test3": {
+        "pod3": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod4": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release2"
+      },
+      "test5": {
+        "pod5": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod6": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release3"
+      },
+      "test6": {
+        "pod6": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod7": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release4"
+      },
+      "dependentServices": [
+        {
+          "microservice10": "UP"
+        },
+        {
+          "microservice11": "UP"
+        },
+        {
+          "microservice12": "UP"
+        }
+      ]
+    },
+    "microservice2": {
+      "test2": {
+        "pod1": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod2": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release1"
+      },
+      "test3": {
+        "pod3": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod4": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release2"
+      },
+      "test5": {
+        "pod5": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod6": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release3"
+      },
+      "test6": {
+        "pod6": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod7": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release4"
+      },
+      "dependentServices": [
+        {
+          "microservice10": "UP"
+        },
+        {
+          "microservice11": "UP"
+        },
+        {
+          "microservice12": "UP"
+        }
+      ]
+    },
+    "microservice3": {
+      "test2": {
+        "pod1": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod2": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release1"
+      },
+      "test3": {
+        "pod3": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod4": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release2"
+      },
+      "test5": {
+        "pod5": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod6": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release3"
+      },
+      "test6": {
+        "pod6": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "pod7": {
+          "status": "UP",
+          "systemUsage": "0.51%",
+          "memory": "8.51%"
+        },
+        "branchName": "release4"
+      },
+      "dependentServices": [
+        {
+          "microservice10": "UP"
+        },
+        {
+          "microservice11": "UP"
+        },
+        {
+          "microservice12": "UP"
+        }
+      ]
+    }
+  }

@@ -1,0 +1,43 @@
+<div *ngIf="healthData">
+    <h2>Microservices Health Dashboard</h2>
+  
+    <div *ngFor="let microservice of objectKeys(healthData)">
+      <h3>{{ microservice }}</h3>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>Environment</th>
+            <th>Pod</th>
+            <th>Status</th>
+            <th>System Usage</th>
+            <th>Memory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let env of objectKeys(healthData[microservice])">
+            <tr *ngFor="let pod of objectKeys(healthData[microservice][env])">
+              <td>{{ env }}</td>
+              <td>{{ pod }}</td>
+              <td [ngClass]="{'up': healthData[microservice][env][pod].status === 'UP', 'down': healthData[microservice][env][pod].status !== 'UP'}">
+                {{ healthData[microservice][env][pod].status }}
+              </td>
+              <td>{{ healthData[microservice][env][pod].systemUsage }}</td>
+              <td>{{ healthData[microservice][env][pod].memory }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+  
+      <div class="charts">
+        <div class="chart">
+          <h4>System Usage</h4>
+          <canvas #systemUsageChart></canvas>
+        </div>
+        <div class="chart">
+          <h4>Memory Usage</h4>
+          <canvas #memoryUsageChart></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
