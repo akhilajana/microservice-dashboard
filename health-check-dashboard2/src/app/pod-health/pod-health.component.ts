@@ -39,45 +39,10 @@ export class PodHealthComponent implements OnInit {
 
   updateChartData() {
     const podStatuses = this.pods.map( pod => pod.status === 'UP'? 100 :0);
-    this.initializePieChart(this.healthCanvasId, this.pods.map(pod => pod.podName),podStatuses, 'Health' );
     this.initializeBarChart(this.memoryUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.memory), 'Memory Usage' );
     this.initializeBarChart(this.systemUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.systemUsage), 'System Usage' );
   }
-  initializePieChart(canvasid: any, labels: any, values: any, title: any) {
-    const pieChartElement = document.getElementById(canvasid) as HTMLCanvasElement;
-    return new Chart(pieChartElement, {
-        type: ChartType.PIE,
-        data: {
-            labels: labels,
-            datasets: [{
-                data: values,
-                backgroundColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],
-                borderColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],
-                borderWidth: 3
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title
-                },
-                legend: {
-                    display: true,
-                    position: 'top'
-                },
-                datalabels: {
-                    display: true,
-                    color: '#fff', // Text color
-                    formatter: (value: any, ctx: any) => {
-                        return `${value}`;
-                    }
-                }
-            }
-        },
-        plugins: [ChartDataLabels] // Ensure to include the datalabels plugin
-    });
-}
+  
 
   private initializeBarChart(canvasid: any, labels: any, values:any, title: any) : any {
     const barChartElement = document.getElementById(canvasid) as HTMLCanvasElement;
@@ -99,9 +64,9 @@ export class PodHealthComponent implements OnInit {
           y: {
             beginAtZero: true,  
             min: 0,
-            max: 100,
+            max: 10,
             ticks: {
-                stepSize: 20
+                stepSize: 0.25
             }}
         }
       } 

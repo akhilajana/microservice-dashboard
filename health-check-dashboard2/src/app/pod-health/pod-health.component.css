@@ -27,3 +27,34 @@
     padding: 40px 10px;
     margin-bottom: 10px;
 }
+
+.pod-health-card {
+    padding: 20px 10px;
+    background: #ededed;
+    MARGIN-BOTTOM: 20PX;
+    BORDER: 1PX SOLID #CCCCCC;
+    BORDER-RADIUS: 6PX;
+    DISPLAY: FLEX;
+    FLEX-DIRECTION: COLUMN;
+    MIN-WIDTH: 320PX;
+    BOX-SIZING: border-box;
+    ALIGN-ITEMS: flex-start;
+    BORDER-LEFT: 10PX SOLID #007bff;
+}
+
+.up,.down{
+    padding: 8px 16px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #fafafa;
+}
+.up{
+    background: rgb(50, 179, 50);
+}
+.down{
+    background: rgb(240, 10, 10);
+}
+
+.pod-health-status {
+    margin-top: 6px;
+}

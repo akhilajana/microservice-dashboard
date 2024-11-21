@@ -1,6 +1,12 @@
 <div class="row pod-health-charts">
-  <div class="col canvas-container">
+  <!-- <div class="col canvas-container">
     <canvas [id]="healthCanvasId" style="height: 200px;"></canvas>
+  </div> -->
+  <div>
+    <div *ngFor="let pod of pods" class="pod-health-card">
+      <div class="pod-health-name">{{pod.podName}}</div>
+      <div class="pod-health-status"><span [class]="pod.status === 'UP'?'up':'down'">{{pod.status}}</span></div>
+    </div>
   </div>
   <div class="col canvas-container">
     <canvas [id]="memoryUsageCanvasId" style="height: 300px;"></canvas>
