@@ -7,7 +7,7 @@
         <div class="col-md-4 dropdown">
         <label for="microservice" class="form-label">Microservice</label>
         <select class="form-select" id="microservice" [(ngModel)]="selectedMicroservice" (change)="onMicroServiceChange()" >
-            <option [value]="0" disabled selected>---Select MicroService---</option>
+            <option [value]="null" disabled selected>---Select MicroService---</option>
             <option [value]="all_option" >Show All Microservices</option>
             <option *ngFor="let service of healthData" [value]="service.microServiceName">{{ service.microServiceName }}</option>
         </select>
@@ -15,7 +15,7 @@
         <div class="col-md-4 dropdown">
         <label for="environment" class="form-label">Environment</label>
         <select class="form-select" id="environment" [(ngModel)]="selectedEnvironment" (change)="onEnvironmentChange()" >
-            <option [value]="0" disabled selected>---Select Environment---</option>
+            <option [value]="null" disabled>---Select Environment---</option>
             <option [value]="all_option" >Show All Environments</option>
             <option *ngFor="let env of filer_option_environments" [value]="env.environment">{{ env.environment }}</option>
         </select>

@@ -12,9 +12,9 @@ import { Subscription, interval } from 'rxjs';
 export class MicroserviceHealthComponent implements OnInit {
   @Input() healthData: any;
 
-  selectedMicroservice: string = '';
+  selectedMicroservice: string | null = null;
   selectedMicroserviceObj: any = '';
-  selectedEnvironment: string = '';
+  selectedEnvironment: string | null = null;
   filer_option_environments: any = [];
   filteredData: any;
   all_option: any = 'All';

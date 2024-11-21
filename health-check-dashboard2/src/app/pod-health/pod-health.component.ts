@@ -62,7 +62,7 @@ export class PodHealthComponent implements OnInit {
           y: {
             beginAtZero: true,  
             min: 0,
-            max: 10,
+            max: 5,
             ticks: {
                 stepSize: 0.25
             }}

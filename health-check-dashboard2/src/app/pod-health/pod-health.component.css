@@ -54,6 +54,10 @@
 .down{
     background: rgb(240, 10, 10);
 }
+.unknown {
+    color: gray;
+    font-style: italic;
+}
 
 .pod-health-status {
     margin-top: 6px;
