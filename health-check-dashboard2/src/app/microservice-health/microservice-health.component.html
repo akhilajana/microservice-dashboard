@@ -1,6 +1,28 @@
-<div *ngFor="let microservice of healthData">
-    <h2>{{ microservice.microServiceName }}</h2>
-    <app-environment-health [microservice]="microservice" [environments]="microservice.data"></app-environment-health>
+<div class="health-dashboard">
+  <div *ngFor="let microservice of healthData">
+      <h2>{{ microservice.microServiceName }}</h2>
+      <app-environment-health [microservice]="microservice" [environments]="microservice.data"></app-environment-health>
+  </div>
+  <div>
+    <h3>Dependent Services</h3>
+    <div *ngIf="dependentServices.length > 0">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Service Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let service of dependentServices" class="table-light">
+            <td>{{ getFirstKey(service) }}</td>
+            <td>{{ getFirstValue(service) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+      
+  </div>
 </div>
-
 
