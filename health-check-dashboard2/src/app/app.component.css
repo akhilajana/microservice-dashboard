@@ -33,3 +33,14 @@ nav h1{
 .filter-actions{
     padding: 20px 0;
 }
+
+
+select{
+  display: inline-block;
+  width: 250px;
+  height: 34px;
+  line-height: 30px;
+  position: relative;
+}
+
+

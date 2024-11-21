@@ -5,15 +5,17 @@
 }
 .microservice-card {
     padding: 20px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #aaaaaa;
     border-radius: 4px;
+    margin-bottom: 25px;
+    background: #efefef;
 }
 
 .microservice-text-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    line-height: 16px;
+    line-height: 1.15;
     margin-bottom: 20px;
 }
 .microservice-text-container .label {
@@ -21,7 +23,9 @@
 }
 .microservice-text-container .service{
     font-size: 16px;
-    margin-left: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 .dropdown{
     display: flex;
@@ -32,4 +36,8 @@
     margin-bottom: 20px;
     font-size: 14px;
     font-weight: bold;
+}
+
+.filter-actions label{
+    font-size: 12px;
 }
