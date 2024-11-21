@@ -9,8 +9,9 @@
     </div>
     <app-pod-health [pods]="env.data.pods" [env]="env"></app-pod-health>
     <div class="dependent-services-container">
-      <div class="label">Dependent Services</div>
+      <div *ngIf="env?.data?.dependentServices?.length === 0 || env.data.dependentServices === undefined">*No Dependent Services Found</div>
       <div *ngIf="env?.data?.dependentServices?.length > 0">
+        <div class="label">Dependent Services</div>
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
