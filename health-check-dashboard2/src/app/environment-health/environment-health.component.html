@@ -7,9 +7,11 @@
       <div class="label">Branch Deployed: </div>
       <div class="branch">{{ env.data.branchName}}</div>
     </div>
-    <app-pod-health [pods]="env.data.pods" [env]="env"></app-pod-health>
-    <div class="dependent-services-container">
-      <div class="label">Dependent Services</div>
+    <app-pod-health [pods]="filterPods(env.data.pods)" [env]="env"></app-pod-health>
+    
+    
+    <div  class="dependent-services-container">
+      <div *ngIf="env?.data?.dependentServices?.length > 0"class="label">Dependent Services</div>
       <div *ngIf="env?.data?.dependentServices?.length > 0">
         <table class="table table-bordered table-hover">
           <thead>

@@ -13,11 +13,10 @@ export class EnvironmentHealthComponent implements OnInit {
   dependentServices = [];
 
   ngOnInit(): void {
-    console.log("Environment Health component");
-    console.log(this.environments);
+  }
 
-    console.log("Environment Health component -- MicroServices");
-    console.log(this.microservice);
+  filterPods(pods: any[]): any[] {
+      return pods.filter(pod => pod.podName != 'dependentServices');
   }
 
   // Helper method to get the first key of an object

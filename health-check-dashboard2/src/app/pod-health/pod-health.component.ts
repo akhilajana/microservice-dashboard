@@ -38,7 +38,7 @@ export class PodHealthComponent implements OnInit {
   }
 
   updateChartData() {
-    const podStatuses = this.pods.map( pod => pod.status === 'UP'? 100 :10);
+    const podStatuses = this.pods.map( pod => pod.status === 'UP'? 100 :0);
     this.initializePieChart(this.healthCanvasId, this.pods.map(pod => pod.podName),podStatuses, 'Health' );
     this.initializeBarChart(this.memoryUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.memory), 'Memory Usage' );
     this.initializeBarChart(this.systemUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.systemUsage), 'System Usage' );
@@ -51,8 +51,8 @@ export class PodHealthComponent implements OnInit {
             labels: labels,
             datasets: [{
                 data: values,
-                backgroundColor: ['rgb(40, 167, 69)', 'rgb(0,123,255)', 'rgb(253,126,20)', 'rgb(220,53,69)'],
-                borderColor: ['rgb(40, 167, 69)', 'rgb(0,123,255)', 'rgb(253,126,20)', 'rgb(220,53,69)'],
+                backgroundColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],
+                borderColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],
                 borderWidth: 3
             }]
         },
@@ -63,16 +63,14 @@ export class PodHealthComponent implements OnInit {
                     text: title
                 },
                 legend: {
-                    display: true, // Show legend for better readability
+                    display: true,
                     position: 'top'
                 },
                 datalabels: {
                     display: true,
                     color: '#fff', // Text color
                     formatter: (value: any, ctx: any) => {
-                        // Display label and value
-                        const label = ctx.chart.data.labels[ctx.dataIndex];
-                        return `${label}: ${value}`;
+                        return `${value}`;
                     }
                 }
             }
@@ -88,8 +86,8 @@ export class PodHealthComponent implements OnInit {
       data: {
         labels: labels,
         datasets: [{data: values,
-        backgroundColor: ['rgb(40, 167, 69)','rgb(0,123,255)','rgb(253,126,20)','rgb(220,53,69)'],
-        borderColor: ['rgb(40, 167, 69)','rgb(0,123,255)','rgb(253,126,20)','rgb(220,53,69)'],
+        backgroundColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],
+        borderColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],
         borderWidth: 3
       }]},
       options: {
