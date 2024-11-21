@@ -10,8 +10,7 @@ import { HealthData, MicroserviceData } from '../interface/microservice-interfac
 })
 export class MicroserviceHealthComponent implements OnInit {
   @Input() healthData: any = {};
-  healthData1: Array<{ [key: string]: string; }> = [];
-  dependentServices = [];
+
 
   constructor(private healthCheckService: HealthCheckService) { }
 
@@ -40,39 +39,7 @@ export class MicroserviceHealthComponent implements OnInit {
       error => {
         console.error('Error fetching health data:', error);
       }
-    );
-
-    this.healthCheckService.getHealthCheckData().subscribe(
-      healthData1 => {
-        this.healthData1 = healthData1;
-
-        if (
-          healthData1.microservice1 &&
-          healthData1.microservice1.dependentServices &&
-          Array.isArray(healthData1.microservice1.dependentServices)
-        ) {
-          this.dependentServices = healthData1.microservice1.dependentServices;
-          console.log("Dependent Services")
-          console.log(this.dependentServices)
-        } else {
-          console.warn("Dependent services are missing or not an array.");
-        }
-      },
-      error => {
-        console.error('Error fetching health data:', error);
-      }
-    );
-    
+    );  
   }
 
-    // Helper method to get the first key of an object
-    getFirstKey(obj: { [key: string]: string }): string {
-      return Object.keys(obj)[0];
-    }
-  
-    // Helper method to get the value of the first key
-    getFirstValue(obj: { [key: string]: string }): string {
-      const key = this.getFirstKey(obj);
-      return obj[key];
-    }
 }

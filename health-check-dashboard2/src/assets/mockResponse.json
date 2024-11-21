@@ -1,58 +1,48 @@
 {
     "microservice1": {
       "test2": {
-        "pod1": {
+        "microservice1-pod1": {
+          "statusCode": 200,
           "status": "UP",
           "systemUsage": "10",
           "memory": "20"
         },
-        "pod2": {
+        "microservice1-pod2": {
+          "statusCode": 200,
           "status": "UP",
           "systemUsage": "0.51",
           "memory": "8.51"
         },
-        "branchName": "release1"
+        "branchName": "release1",
+        "dependentServices": [
+        {
+          "microservice10": "UP",
+          "failedPods": [
+            "microservice10-pod1",
+            "microservice10-pod2"
+          ]
+        },
+        {
+          "microservice11": "UP"
+        },
+        {
+          "microservice12": "UP"
+        }
+      ]
       },
       "test3": {
-        "pod3": {
+        "microservice1-pod3": {
           "status": "UP",
           "systemUsage": "0.51",
           "memory": "8.51"
         },
-        "pod4": {
+        "microservice1-pod4": {
           "status": "UP",
           "systemUsage": "0.51",
           "memory": "8.51"
         },
-        "branchName": "release2"
-      },
-      "test5": {
-        "pod5": {
-          "status": "UP",
-          "systemUsage": "0.51",
-          "memory": "8.51"
-        },
-        "pod6": {
-          "status": "UP",
-          "systemUsage": "0.51",
-          "memory": "8.51"
-        },
-        "branchName": "release3"
-      },
-      "test6": {
-        "pod7": {
-          "status": "UP",
-          "systemUsage": "0.51",
-          "memory": "8.51"
-        },
-        "pod8": {
-          "status": "UP",
-          "systemUsage": "0.51",
-          "memory": "8.51"
-        },
-        "branchName": "release4"
-      },
-      "dependentServices": [
+        "branchName": "release2",
+        "dependentServices": [
         {
           "microservice10": "UP"
         },
@@ -63,5 +53,114 @@
           "microservice12": "UP"
         }
       ]
+      },
+      "test5": {
+        "microservice1-pod5": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "microservice1-pod6": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "branchName": "release3"
+      },
+      "test6": {
+        "microservice1-pod7": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "microservice1-pod8": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "branchName": "release4"
+      }
+    },
+    "microservice2": {
+      "test2": {
+        "microservice2-pod1": {
+          "statusCode": 200,
+          "status": "UP",
+          "systemUsage": "10",
+          "memory": "20"
+        },
+        "microservice2-pod2": {
+          "statusCode": 200,
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "branchName": "release1",
+        "dependentServices": [
+        {
+          "microservice10": "UP",
+          "failedPods": [
+            "microservice10-pod1",
+            "microservice10-pod2"
+          ]
+        },
+        {
+          "microservice11": "UP"
+        },
+        {
+          "microservice12": "UP"
+        }
+      ]
+      },
+      "test3": {
+        "microservice2-pod3": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "microservice2-pod4": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "branchName": "release2",
+        "dependentServices": [
+        {
+          "microservice10": "UP"
+        },
+        {
+          "microservice11": "UP"
+        },
+        {
+          "microservice12": "UP"
+        }
+      ]
+      },
+      "test5": {
+        "microservice2-pod5": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "microservice2-pod6": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "branchName": "release3"
+      },
+      "test6": {
+        "microservice2-pod7": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "microservice2-pod8": {
+          "status": "UP",
+          "systemUsage": "0.51",
+          "memory": "8.51"
+        },
+        "branchName": "release4"
+      }
     }
-  }
+}

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 
 import { Pod } from '../interface/microservice-interfaces';
 export enum ChartType {
@@ -19,7 +21,6 @@ export enum ChartType {
 export class PodHealthComponent implements OnInit {
   @Input() pods:Pod[] = [];
   @Input() env:any;
-  @Input() microservice: any;
 
   chartData: any[] = [];
   memoryUsageCanvasId: any;
@@ -27,9 +28,9 @@ export class PodHealthComponent implements OnInit {
   healthCanvasId: any;
 
   ngOnInit() {
-    this.healthCanvasId = this.microservice.microServiceName +this.env?.environment + 'health';
-    this.memoryUsageCanvasId = this.microservice.microServiceName +this.env?.environment + 'memory';
-    this.systemUsageCanvasId = this.microservice.microServiceName +this.env?.environment + 'systemUsage';
+    this.healthCanvasId = this.pods.map(pod => pod.podName) + 'health';
+    this.memoryUsageCanvasId = this.pods.map(pod => pod.podName)+ 'memory';
+    this.systemUsageCanvasId = this.pods.map(pod => pod.podName) + 'systemUsage';
   }
 
   ngAfterViewInit(){
@@ -42,26 +43,43 @@ export class PodHealthComponent implements OnInit {
     this.initializeBarChart(this.memoryUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.memory), 'Memory Usage' );
     this.initializeBarChart(this.systemUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.systemUsage), 'System Usage' );
   }
-  initializePieChart(canvasid: any, labels: any, values:any, title: any) {
+  initializePieChart(canvasid: any, labels: any, values: any, title: any) {
     const pieChartElement = document.getElementById(canvasid) as HTMLCanvasElement;
     return new Chart(pieChartElement, {
-      type: ChartType.PIE,
-      data: {
-        labels: labels,
-        datasets: [{data: values,
-        backgroundColor: ['rgb(40, 167, 69)','rgb(0,123,255)','rgb(253,126,20)','rgb(220,53,69)'],
-        borderColor: ['rgb(40, 167, 69)','rgb(0,123,255)','rgb(253,126,20)','rgb(220,53,69)'],
-        borderWidth: 3
-      }]},
-      options: {
-        plugins: {
-          title: { display: true, text: [title]},
-          legend: {display: false}
-        }
-      } 
-    })
-  }
-
+        type: ChartType.PIE,
+        data: {
+            labels: labels,
+            datasets: [{
+                data: values,
+                backgroundColor: ['rgb(40, 167, 69)', 'rgb(0,123,255)', 'rgb(253,126,20)', 'rgb(220,53,69)'],
+                borderColor: ['rgb(40, 167, 69)', 'rgb(0,123,255)', 'rgb(253,126,20)', 'rgb(220,53,69)'],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: true, // Show legend for better readability
+                    position: 'top'
+                },
+                datalabels: {
+                    display: true,
+                    color: '#fff', // Text color
+                    formatter: (value: any, ctx: any) => {
+                        // Display label and value
+                        const label = ctx.chart.data.labels[ctx.dataIndex];
+                        return `${label}: ${value}`;
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels] // Ensure to include the datalabels plugin
+    });
+}
 
   private initializeBarChart(canvasid: any, labels: any, values:any, title: any) : any {
     const barChartElement = document.getElementById(canvasid) as HTMLCanvasElement;
@@ -80,7 +98,13 @@ export class PodHealthComponent implements OnInit {
           legend: {display: false}
         },
         scales: {
-          y: {beginAtZero: true}
+          y: {
+            beginAtZero: true,  
+            min: 0,
+            max: 100,
+            ticks: {
+                stepSize: 20
+            }}
         }
       } 
     })
