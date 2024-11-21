@@ -5,8 +5,9 @@
 }
 .microservice-card {
     padding: 20px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #aaaaaa;
     border-radius: 4px;
+    margin-bottom: 25px;
 }
 
 .microservice-text-container {
