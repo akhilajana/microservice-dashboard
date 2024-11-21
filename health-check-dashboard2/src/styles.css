@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+select{
+    display: inline-block;
+    width: 250px;
+    height: 34px;
+    line-height: 30px;
+    position: relative;
+  }

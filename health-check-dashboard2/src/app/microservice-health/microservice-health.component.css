@@ -35,3 +35,7 @@
     font-size: 14px;
     font-weight: bold;
 }
+
+.filter-actions label{
+    font-size: 12px;
+}
