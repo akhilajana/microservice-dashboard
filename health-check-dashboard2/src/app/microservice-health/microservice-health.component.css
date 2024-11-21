@@ -41,3 +41,9 @@
 .filter-actions label{
     font-size: 12px;
 }
+
+.last-received-date {
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: 600;
+}

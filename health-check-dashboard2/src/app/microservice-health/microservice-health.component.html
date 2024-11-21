@@ -20,9 +20,10 @@
             <option *ngFor="let env of filer_option_environments" [value]="env.environment">{{ env.environment }}</option>
         </select>
         </div>
-        <!-- <div class="col-md-2 d-flex align-items-end">
-        <button class="btn btn-primary w-100">Search</button>
-        </div> -->
+        <div class="col-md-2">
+          <div style="font-size: 12px;">Last Updated</div>
+          <div class="last-received-date">{{ lastReceivedDate | date: 'short' }}</div>
+        </div>
     </div>
     </div>
 

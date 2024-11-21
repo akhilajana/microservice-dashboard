@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HealthCheckService } from '../services/health-check.service';
 import { HealthData, MicroserviceData } from '../interface/microservice-interfaces';
+import { Subscription, interval } from 'rxjs';
 
 
 @Component({
@@ -17,10 +18,23 @@ export class MicroserviceHealthComponent implements OnInit {
   filer_option_environments: any = [];
   filteredData: any;
   all_option: any = 'All';
+  lastReceivedDate: Date | null = null;
+  private subscription: Subscription = new Subscription();
 
   constructor(private healthCheckService: HealthCheckService) { }
 
   ngOnInit(): void {
+    // Call getHealthCheckData initially
+    this.fetchHealthData();
+
+    // Set up interval to call getHealthCheckData every 5 minutes
+    const fetchInterval$ = interval(5 * 60 * 1000); // 5 minutes in milliseconds
+    this.subscription.add(
+      fetchInterval$.subscribe(() => this.fetchHealthData())
+    );
+  }
+
+  fetchHealthData(): void {
     this.healthCheckService.getHealthCheckData().subscribe(
       data => {
         this.healthData = data;
@@ -48,7 +62,15 @@ export class MicroserviceHealthComponent implements OnInit {
         console.error('Error fetching health data:', error);
       }
     );  
+
+    // Update last received date
+    this.lastReceivedDate = new Date();
+
+    console.log('Filtered Data:', this.healthData);
+    console.log('Last Received Date:', this.lastReceivedDate);
   }
+
+
   onMicroServiceChange(){
     console.log(this.filer_option_environments);
     if(this.selectedMicroservice === this.all_option){

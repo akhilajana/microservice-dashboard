@@ -4,6 +4,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
 import { Pod } from '../interface/microservice-interfaces';
+import { removePercent } from '../utils/removePercent.util';
 export enum ChartType {
   BAR = 'bar',
   PIE = 'pie'
@@ -25,10 +26,8 @@ export class PodHealthComponent implements OnInit {
   chartData: any[] = [];
   memoryUsageCanvasId: any;
   systemUsageCanvasId: any;
-  healthCanvasId: any;
 
   ngOnInit() {
-    this.healthCanvasId = this.pods.map(pod => pod.podName) + 'health';
     this.memoryUsageCanvasId = this.pods.map(pod => pod.podName)+ 'memory';
     this.systemUsageCanvasId = this.pods.map(pod => pod.podName) + 'systemUsage';
   }
@@ -38,9 +37,8 @@ export class PodHealthComponent implements OnInit {
   }
 
   updateChartData() {
-    const podStatuses = this.pods.map( pod => pod.status === 'UP'? 100 :0);
-    this.initializeBarChart(this.memoryUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.memory), 'Memory Usage' );
-    this.initializeBarChart(this.systemUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => pod.systemUsage), 'System Usage' );
+    this.initializeBarChart(this.memoryUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => removePercent(pod.memory)), 'Memory Usage' );
+    this.initializeBarChart(this.systemUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => removePercent(pod.systemUsage)), 'System Usage' );
   }
   
 
@@ -49,7 +47,7 @@ export class PodHealthComponent implements OnInit {
     return new Chart(barChartElement, {
       type: ChartType.BAR,
       data: {
-        labels: labels,
+        labels: labels = labels.map((label: string) => label.length > 15 ? label.match(/.{1,15}/g) : label),
         datasets: [{data: values,
         backgroundColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],
         borderColor: ['rgb(0, 87, 184)', 'rgb(0,201,255)', 'rgb(73,238,220)', 'rgb(145,220,0)'],

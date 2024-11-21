@@ -4,8 +4,8 @@
         "microservice1-pod1": {
           "statusCode": 200,
           "status": "UP",
-          "systemUsage": "10",
-          "memory": "20"
+          "systemUsage": "10%",
+          "memory": "20%"
         },
         "microservice1-pod2": {
           "statusCode": 200,
@@ -83,7 +83,7 @@
     },
     "microservice2": {
       "test2": {
-        "microservice2-pod1": {
+        "microservice2-pod1123455667899009987": {
           "statusCode": 200,
           "status": "UP",
           "systemUsage": "10",

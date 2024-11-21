@@ -10,6 +10,7 @@ import { MicroserviceHealthComponent } from './microservice-health/microservice-
 import { EnvironmentHealthComponent } from './environment-health/environment-health.component';
 import { PodHealthComponent } from './pod-health/pod-health.component';
 import { DependentServicesComponent } from './dependent-services/dependent-services.component';
+import { RemovePercentPipe } from './remove-percent.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DependentServicesComponent } from './dependent-services/dependent-servi
     MicroserviceHealthComponent,
     EnvironmentHealthComponent,
     PodHealthComponent,
-    DependentServicesComponent
+    DependentServicesComponent,
+    RemovePercentPipe
   ],
   imports: [
     BrowserModule,

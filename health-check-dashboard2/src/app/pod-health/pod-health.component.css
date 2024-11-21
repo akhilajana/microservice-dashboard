@@ -58,3 +58,9 @@
 .pod-health-status {
     margin-top: 6px;
 }
+
+.pods-health-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
