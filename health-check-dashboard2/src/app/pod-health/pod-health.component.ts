@@ -51,8 +51,8 @@ export class PodHealthComponent implements OnInit {
             labels: labels,
             datasets: [{
                 data: values,
-                backgroundColor: ['rgb(40, 167, 69)', 'rgb(0,123,255)', 'rgb(253,126,20)', 'rgb(220,53,69)'],
-                borderColor: ['rgb(40, 167, 69)', 'rgb(0,123,255)', 'rgb(253,126,20)', 'rgb(220,53,69)'],
+                backgroundColor: ['rgb(255, 165, 0)', 'rgb(0, 0, 255)', 'rgb(255,255,0)', 'rgb(55, 182, 193'],
+                borderColor: ['rgb(255, 165, 0)', 'rgb(0, 0, 255)', 'rgb(255,255,0)', 'rgb(55, 182, 193'],
                 borderWidth: 3
             }]
         },
@@ -88,8 +88,8 @@ export class PodHealthComponent implements OnInit {
       data: {
         labels: labels,
         datasets: [{data: values,
-        backgroundColor: ['rgb(40, 167, 69)','rgb(0,123,255)','rgb(253,126,20)','rgb(220,53,69)'],
-        borderColor: ['rgb(40, 167, 69)','rgb(0,123,255)','rgb(253,126,20)','rgb(220,53,69)'],
+          backgroundColor: ['rgb(255, 165, 0)', 'rgb(0, 0, 255)', 'rgb(255,255,0)', 'rgb(55, 182, 193'],
+          borderColor: ['rgb(255, 165, 0)', 'rgb(0, 0, 255)', 'rgb(255,255,0)', 'rgb(55, 182, 193'],
         borderWidth: 3
       }]},
       options: {
