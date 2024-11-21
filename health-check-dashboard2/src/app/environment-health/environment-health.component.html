@@ -26,7 +26,7 @@
           <tbody>
             <tr *ngFor="let service of env?.data?.dependentServices" class="table-light">
               <td>{{ getFirstKey(service) }}</td>
-              <td>{{ getFirstValue(service) }}</td>
+              <td><span [class]="getFirstValue(service) === 'UP'?'up':'down'">{{ getFirstValue(service) }}</span></td>
               <td>{{ service.failedPods }}</td>
             </tr>
           </tbody>
