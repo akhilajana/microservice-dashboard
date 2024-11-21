@@ -20,17 +20,14 @@ export class EnvironmentHealthComponent implements OnInit {
   }
 
   // Helper method to get the first key of an object
-  getFirstKey(obj: { [key: string]: string }): string {
-    return Object.keys(obj)[0];
+  getFirstKey(obj: { [key: string]: string }): string | undefined {
+    const [key, value] = Object.entries(obj).find(([key]) => key !== 'failedPods') || [];
+    return key !== undefined ? key : 'Unknown';
   }
 
-  // Helper method to get the value of the first key
-  getFirstValue(obj: { [key: string]: string }): string {
-    const key = this.getFirstKey(obj);
-    return obj[key];
+  getDependentServiceStatus(obj: { [key: string]: string }): string {
+    const [, value] = Object.entries(obj).find(([key]) => key !== 'failedPods') || [];
+    return value !== undefined ? value : 'Unknown';
   }
-
-
- 
 }
 

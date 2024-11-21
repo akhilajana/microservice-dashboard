@@ -98,11 +98,12 @@
         "branchName": "release1",
         "dependentServices": [
         {
-          "microservice10": "UP",
+          
           "failedPods": [
             "microservice10-pod1",
             "microservice10-pod2"
-          ]
+          ],
+          "microservice10": "UP"
         },
         {
           "microservice11": "UP"
