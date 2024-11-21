@@ -9,8 +9,14 @@ import { HealthData, MicroserviceData } from '../interface/microservice-interfac
   styleUrls: ['./microservice-health.component.css']
 })
 export class MicroserviceHealthComponent implements OnInit {
-  @Input() healthData: any = {};
+  @Input() healthData: any;
 
+  selectedMicroservice: string = '';
+  selectedMicroserviceObj: any = '';
+  selectedEnvironment: string = '';
+  filer_option_environments: any = [];
+  filteredData: any;
+  all_option: any = 'All';
 
   constructor(private healthCheckService: HealthCheckService) { }
 
@@ -24,6 +30,7 @@ export class MicroserviceHealthComponent implements OnInit {
             environment: env,
             data: {
               branchName: data.branchName,
+              dependentServices: data.dependentServices,
               pods: Object.entries(data)
               .map(([podName, data]: [string, any]) => ({
                 podName: podName,
@@ -32,8 +39,9 @@ export class MicroserviceHealthComponent implements OnInit {
                 memory: data.memory,
               })).filter(item => item.podName != "branchName")
             }
-          })).filter(item => item.environment != "dependentServices")
+          }))
         }));
+        this.filteredData = [...this.healthData];
         console.log("Filtered"+this.healthData);
       },
       error => {
@@ -41,5 +49,39 @@ export class MicroserviceHealthComponent implements OnInit {
       }
     );  
   }
-
+  onMicroServiceChange(){
+    console.log(this.filer_option_environments);
+    if(this.selectedMicroservice === this.all_option){
+      this.filteredData = [...this.healthData];
+    } else{
+      this.filer_option_environments = this.healthData.filter((service: any) => {
+        return service.microServiceName === this.selectedMicroservice
+        })[0].data;
+      this.filteredData =  this.healthData.filter((service: any) => {
+        return service.microServiceName === this.selectedMicroservice
+        });
+    }
+   
+  }
+  // else if(this.selectedEnvironment !== this.all_option && this.selectedMicroservice === this.all_option){
+  //   this.filteredData = this.filteredData.map((service: any) => {
+  //     service.data = service.data.filter((env: any) => {
+  //       return env.environment === this.selectedEnvironment
+  //     })
+  //   })
+  // }
+  
+  onEnvironmentChange(){
+    if(this.selectedEnvironment === this.all_option && this.selectedMicroservice !== this.all_option){
+      this.filteredData[0].data = this.filer_option_environments;
+    } else if(this.selectedEnvironment === this.all_option && this.selectedMicroservice === this.all_option){
+      this.filer_option_environments = [];
+      this.filteredData = [...this.healthData];
+    } else{
+      this.filteredData[0].data =  this.filer_option_environments.filter((env: any) => {
+          return env.environment === this.selectedEnvironment
+        })
+    }
+   
+  }
 }

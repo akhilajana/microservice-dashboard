@@ -1,21 +1,29 @@
 <div *ngFor="let env of environments">
-    <h3>{{ env.environment }}</h3>
-    <div>{{ env.data.branchName}}</div>
+    <div class="environment-text-container">
+      <div class="label">Environment: </div>
+      <div class="environment">{{ env.environment }}</div>
+    </div>
+    <div class="branch-text-container">
+      <div class="label">Branch Deployed: </div>
+      <div class="branch">{{ env.data.branchName}}</div>
+    </div>
     <app-pod-health [pods]="env.data.pods" [env]="env"></app-pod-health>
-    <div>
-      <h3>Dependent Services</h3>
-      <div *ngIf="dependentServices.length > 0">
+    <div class="dependent-services-container">
+      <div class="label">Dependent Services</div>
+      <div *ngIf="env?.data?.dependentServices?.length > 0">
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
               <th>Service Name</th>
               <th>Status</th>
+              <th>Failed Pods</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let service of dependentServices" class="table-light">
+            <tr *ngFor="let service of env?.data?.dependentServices" class="table-light">
               <td>{{ getFirstKey(service) }}</td>
               <td>{{ getFirstValue(service) }}</td>
+              <td>{{ service.failedPods }}</td>
             </tr>
           </tbody>
         </table>

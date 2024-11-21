@@ -1,5 +1,35 @@
 .health-dashboard{
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px 0;
+}
+.microservice-card {
     padding: 20px;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+}
+
+.microservice-text-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    line-height: 16px;
+    margin-bottom: 20px;
+}
+.microservice-text-container .label {
+    font-size: 12px;
+}
+.microservice-text-container .service{
+    font-size: 16px;
+    margin-left: 10px;
+}
+.dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-container .label {
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: bold;
 }

@@ -1,0 +1,15 @@
+.environment-text-container, .branch-text-container{
+    display: flex;
+    line-height: 16px;
+    margin-bottom: 5px;
+}
+
+.environment-text-container .label, .branch-text-container .label{
+    font-size: 12px;
+}
+
+.environment-text-container .environment, .branch-text-container .branch{
+    font-size: 14px;
+    margin-left: 10px;
+
+}

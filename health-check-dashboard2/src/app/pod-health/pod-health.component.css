@@ -23,3 +23,9 @@
     border-radius: 5px;
     background-color: #f9f9f9;
 }
+
+.pod-health-charts {
+    padding: 40px 10px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 40px;
+}

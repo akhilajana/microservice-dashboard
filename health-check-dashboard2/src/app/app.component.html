@@ -1,57 +1,10 @@
 <nav class="navbar">
+    <div class="header-container">
     <h1 class="navbar-title">Health Check Dashboard</h1>
     <button class="refresh-button" (click)="refreshPage()">Refresh</button>
+    </div>
 </nav>
+<div class="main-container">
 
-<div class="container mt-4">
-    <!-- First Container -->
-    <div class="card p-3 mb-4">
-      <h5>Select Microservice and Environment</h5>
-      <div class="row g-3">
-        <div class="col-md-5">
-          <label for="microservice" class="form-label">Microservice Name</label>
-          <select class="form-select" id="microservice" [(ngModel)]="selectedMicroservice">
-            <option *ngFor="let service of microservices" [value]="service">{{ service }}</option>
-          </select>
-        </div>
-        <div class="col-md-5">
-          <label for="environment" class="form-label">Environment</label>
-          <select class="form-select" id="environment" [(ngModel)]="selectedEnvironment">
-            <option *ngFor="let env of environments" [value]="env">{{ env }}</option>
-          </select>
-        </div>
-        <div class="col-md-2 d-flex align-items-end">
-          <button class="btn btn-primary w-100" (click)="onSearch()">Search</button>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Second Container -->
-    <div class="accordion" id="accordionExample">
-      <div *ngFor="let group of collapsibleGroups; let i = index" class="accordion-item">
-        <h2 class="accordion-header" id="heading{{ i }}">
-          <button
-            class="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            [attr.data-bs-target]="'#collapse' + i"
-            [attr.aria-expanded]="i === 0 ? 'true' : 'false'"
-            [attr.aria-controls]="'collapse' + i">
-            {{ group.title }}
-          </button>
-        </h2>
-        <div
-          [id]="'collapse' + i"
-          class="accordion-collapse collapse"
-          [ngClass]="{ show: i === 0 }"
-          [attr.aria-labelledby]="'heading' + i"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <p>{{ group.content }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-<app-microservice-health></app-microservice-health>
+    <app-microservice-health></app-microservice-health>
+</div>

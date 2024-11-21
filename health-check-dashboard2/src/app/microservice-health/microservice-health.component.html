@@ -1,6 +1,38 @@
 <div class="health-dashboard">
-  <div *ngFor="let microservice of healthData">
-      <h2>{{ microservice.microServiceName }}</h2>
+  <div class="mt-4">
+    <!-- First Container -->
+    <div class="card p-3 mb-4 filter-container">
+    <div class="label">Select Microservice and Environment</div>
+    <div class="row g-3 filter-actions">
+        <div class="col-md-5 dropdown">
+        <label for="microservice" class="form-label">Microservice</label>
+        <select class="form-select" id="microservice" [(ngModel)]="selectedMicroservice" (change)="onMicroServiceChange()" >
+            <option [value]="0" disabled selected>---Select MicroService---</option>
+            <option [value]="all_option" >Show All Microservices</option>
+            <option *ngFor="let service of healthData" [value]="service.microServiceName">{{ service.microServiceName }}</option>
+        </select>
+        </div>
+        <div class="col-md-5 dropdown">
+        <label for="environment" class="form-label">Environment</label>
+        <select class="form-select" id="environment" [(ngModel)]="selectedEnvironment" (change)="onEnvironmentChange()" >
+            <option [value]="0" disabled selected>---Select Environment---</option>
+            <option [value]="all_option" >Show All Environments</option>
+            <option *ngFor="let env of filer_option_environments" [value]="env.environment">{{ env.environment }}</option>
+        </select>
+        </div>
+        <!-- <div class="col-md-2 d-flex align-items-end">
+        <button class="btn btn-primary w-100">Search</button>
+        </div> -->
+    </div>
+    </div>
+
+</div>
+  <div *ngFor="let microservice of filteredData " class="microservice-card">
+      <div class="microservice-text-container">
+        
+        <div class="label">Microservice: </div>
+        <div class="service">{{microservice.microServiceName}}</div>
+      </div>
       <app-environment-health [microservice]="microservice" [environments]="microservice.data"></app-environment-health>
   </div>
 </div>
