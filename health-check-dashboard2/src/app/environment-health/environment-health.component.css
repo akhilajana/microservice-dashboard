@@ -11,13 +11,18 @@
 .environment-text-container .environment, .branch-text-container .branch{
     font-size: 14px;
     margin-left: 10px;
-
 }
-
 .environment-container{
-
     padding: 20px;
     border: 1px solid #cccccc;
     border-radius: 4px;
     margin-bottom: 20px;
+}
+.dependent-services-container {
+    padding: 20px 30px;
+    font-size: 14px;
+}
+.dependent-services-container .label{
+    font-weight: bold;
+    margin-bottom: 10px;
 }
