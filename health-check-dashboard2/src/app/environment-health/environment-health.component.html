@@ -24,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let service of env?.data?.dependentServices" class="table-light">
+            <tr *ngFor="let service of env?.data?.dependentServices" class="table-bordered">
               <td>{{ getFirstKey(service) }}</td>
               <td><span [class]="getFirstValue(service) === 'UP'?'up':'down'">{{ getFirstValue(service) }}</span></td>
               <td>{{ service.failedPods }}</td>
