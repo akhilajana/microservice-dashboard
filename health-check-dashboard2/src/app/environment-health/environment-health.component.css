@@ -1,7 +1,15 @@
+.environment-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    column-gap: 60px;
+}
+
 .environment-text-container, .branch-text-container{
     display: flex;
+    flex-direction: column;
     line-height: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .environment-text-container .label, .branch-text-container .label{
@@ -10,7 +18,8 @@
 
 .environment-text-container .environment, .branch-text-container .branch{
     font-size: 14px;
-    margin-left: 10px;
+    margin-top: 10px;
+    font-weight: 600;
 }
 .environment-container{
     padding: 20px;

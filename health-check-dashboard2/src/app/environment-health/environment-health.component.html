@@ -1,4 +1,5 @@
 <div *ngFor="let env of environments" class="environment-container">
+  <div class="environment-details">
     <div class="environment-text-container">
       <div class="label">Environment: </div>
       <div class="environment">{{ env.environment }}</div>
@@ -7,6 +8,8 @@
       <div class="label">Branch Deployed: </div>
       <div class="branch">{{ env.data.branchName}}</div>
     </div>
+  </div>
+   
     <app-pod-health [pods]="env.data.pods" [env]="env"></app-pod-health>
     <div class="dependent-services-container">
       <div *ngIf="env?.data?.dependentServices?.length === 0 || env.data.dependentServices === undefined">*No Dependent Services Found</div>
