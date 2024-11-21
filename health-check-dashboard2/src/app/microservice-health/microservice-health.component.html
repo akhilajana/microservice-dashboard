@@ -27,6 +27,10 @@
     </div>
     </div>
 
+    <div *ngIf="isLoading" class="spinner-container">
+      <div class="spinner"></div>
+    </div>
+
 </div>
   <div *ngFor="let microservice of filteredData " class="microservice-card">
       <div class="microservice-text-container">

@@ -11,6 +11,7 @@ import { EnvironmentHealthComponent } from './environment-health/environment-hea
 import { PodHealthComponent } from './pod-health/pod-health.component';
 import { DependentServicesComponent } from './dependent-services/dependent-services.component';
 import { RemovePercentPipe } from './remove-percent.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RemovePercentPipe } from './remove-percent.pipe';
   imports: [
     BrowserModule,
     FormsModule,
+    NgxPaginationModule,
     CommonModule,
     HttpClientModule,
     BaseChartDirective

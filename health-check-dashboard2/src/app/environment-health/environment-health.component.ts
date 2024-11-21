@@ -11,8 +11,16 @@ export class EnvironmentHealthComponent implements OnInit {
   @Input() environments: any;
   @Input() microservice: any;
   dependentServices = [];
+  // Variables for pagination
+  pageSize: number = 10;  // Number of items per page
+  currentPage: number = 1; // Current page number
 
   ngOnInit(): void {
+  }
+
+  // Method for handling page changes
+  onPageChange(page: number): void {
+    this.currentPage = page;
   }
 
   filterPods(pods: any[]): any[] {

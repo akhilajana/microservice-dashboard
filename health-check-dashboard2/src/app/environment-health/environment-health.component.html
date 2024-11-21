@@ -11,7 +11,36 @@
   </div>
    
     <app-pod-health [pods]="filterPods(env.data.pods)" [env]="env"></app-pod-health>
+    
     <div class="dependent-services-container">
+      <div *ngIf="env?.data?.dependentServices?.length === 0 || env.data.dependentServices === undefined">
+        *No Dependent Services Found
+      </div>
+      <div *ngIf="env?.data?.dependentServices?.length > 0">
+        <div class="label">Dependent Services</div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Service Name</th>
+              <th>Status</th>
+              <th>Failed Pods</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of env?.data?.dependentServices | paginate: { itemsPerPage: pageSize, currentPage: currentPage }" class="table-bordered">
+              <td>{{ getFirstKey(service) }}</td>
+              <td>
+                <span [class]="getDependentServiceStatus(service) === 'UP' ? 'up' : 'down'">
+                  {{ getDependentServiceStatus(service) }}
+                </span>
+              </td>
+              <td>{{ service.failedPods && service.failedPods.length > 0 ? service.failedPods : '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    
+    <!-- <div class="dependent-services-container">
       <div *ngIf="env?.data?.dependentServices?.length === 0 || env.data.dependentServices === undefined">*No Dependent Services Found</div>
       <div *ngIf="env?.data?.dependentServices?.length > 0">
         <div class="label">Dependent Services</div>
@@ -32,5 +61,5 @@
           </tbody>
         </table>
       </div> 
-    </div>
+    </div> -->
 </div>

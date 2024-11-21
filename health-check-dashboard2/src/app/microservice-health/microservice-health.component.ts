@@ -20,6 +20,7 @@ export class MicroserviceHealthComponent implements OnInit {
   all_option: any = 'All';
   lastReceivedDate: Date | null = null;
   private subscription: Subscription = new Subscription();
+  isLoading = false;
 
   constructor(private healthCheckService: HealthCheckService) { }
 
@@ -35,8 +36,10 @@ export class MicroserviceHealthComponent implements OnInit {
   }
 
   fetchHealthData(): void {
+    this.isLoading = true;  // Start loading, show the spinner
     this.healthCheckService.getHealthCheckData().subscribe(
       data => {
+        this.isLoading = false;  // Stop loading, hide the spinner
         this.healthData = data;
         this.healthData = Object.entries(data).map(([microService, data]: [string, any]) => ({
           microServiceName: microService,
@@ -49,7 +52,7 @@ export class MicroserviceHealthComponent implements OnInit {
               .map(([podName, data]: [string, any]) => ({
                 podName: podName,
                 status: data.status,
-                systemUsage: data.systemUsage,
+                systemUsage: data.systemCpuUsage,
                 memory: data.memory,
               })).filter(item => item.podName != "branchName")
             }
@@ -59,6 +62,7 @@ export class MicroserviceHealthComponent implements OnInit {
         console.log("Filtered"+this.healthData);
       },
       error => {
+        this.isLoading = false;  // Stop loading, hide the spinner
         console.error('Error fetching health data:', error);
       }
     );  

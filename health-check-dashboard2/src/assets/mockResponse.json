@@ -4,13 +4,13 @@
         "microservice1-pod1": {
           "statusCode": 200,
           "status": "UP",
-          "systemUsage": "10%",
+          "systemCpuUsage": "10%",
           "memory": "20%"
         },
         "microservice1-pod2": {
           "statusCode": 200,
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release1",
@@ -33,12 +33,12 @@
       "test3": {
         "microservice1-pod3": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "microservice1-pod4": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release2",
@@ -57,12 +57,12 @@
       "test5": {
         "microservice1-pod5": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "microservice1-pod6": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release3"
@@ -70,12 +70,12 @@
       "test6": {
         "microservice1-pod7": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "microservice1-pod8": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release4"
@@ -86,13 +86,13 @@
         "microservice2-pod1123455667899009987": {
           "statusCode": 200,
           "status": "UP",
-          "systemUsage": "10",
+          "systemCpuUsage": "10",
           "memory": "20"
         },
         "microservice2-pod2": {
           "statusCode": 200,
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release1",
@@ -116,12 +116,12 @@
       "test3": {
         "microservice2-pod3": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "microservice2-pod4": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release2",
@@ -140,12 +140,12 @@
       "test5": {
         "microservice2-pod5": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "microservice2-pod6": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release3"
@@ -153,12 +153,12 @@
       "test6": {
         "microservice2-pod7": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "microservice2-pod8": {
           "status": "UP",
-          "systemUsage": "0.51",
+          "systemCpuUsage": "0.51",
           "memory": "8.51"
         },
         "branchName": "release4"
