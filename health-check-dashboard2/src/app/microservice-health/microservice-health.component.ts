@@ -3,6 +3,7 @@ import { HealthCheckService } from '../services/health-check.service';
 import { HealthData, MicroserviceData } from '../interface/microservice-interfaces';
 import { Subscription, interval } from 'rxjs';
 import { cloneDeep } from 'lodash';
+import { DateFormatterService } from '../services/date-formatter.service';
 
 @Component({
   selector: 'app-microservice-health',
@@ -22,8 +23,10 @@ export class MicroserviceHealthComponent implements OnInit {
   lastReceivedDate: Date | null = null;
   private subscription: Subscription = new Subscription();
   isLoading = false;
+  isInitialLoad = true; // Track if it's the initial load
 
-  constructor(private healthCheckService: HealthCheckService) { }
+
+  constructor(private healthCheckService: HealthCheckService, private dateFormatterService: DateFormatterService) { }
 
   ngOnInit(): void {
     // Call getHealthCheckData initially
@@ -32,15 +35,19 @@ export class MicroserviceHealthComponent implements OnInit {
     // Set up interval to call getHealthCheckData every 5 minutes
     const fetchInterval$ = interval(5 * 60 * 1000); // 5 minutes in milliseconds
     this.subscription.add(
-      fetchInterval$.subscribe(() => this.fetchHealthData())
+      fetchInterval$.subscribe(() => this.fetchHealthData(false))
     );
   }
 
-  fetchHealthData(): void {
-    this.isLoading = true;  // Start loading, show the spinner
+  fetchHealthData(showSpinner: boolean = true): void {
+    if (this.isInitialLoad || showSpinner) {
+      this.isLoading = true; // Show spinner only for the first load or explicitly specified calls
+    }
     this.healthCheckService.getHealthCheckData().subscribe(
       data => {
         this.isLoading = false;  // Stop loading, hide the spinner
+        this.isInitialLoad = false; // Initial load is complete
+        this.lastReceivedDate = new Date();         // Update last received date
         this.healthData = data;
         this.healthData = Object.entries(data).map(([microService, data]: [string, any]) => ({
           microServiceName: microService,
@@ -48,6 +55,7 @@ export class MicroserviceHealthComponent implements OnInit {
             environment: env,
             data: {
               branchName: data.branchName,
+            //  deploymentDate: this.dateFormatterService.formatDeploymentDate(data.deploymentDate),
               dependentServices: data.dependentServices,
               pods: Object.entries(data)
               .map(([podName, data]: [string, any]) => ({
@@ -55,7 +63,7 @@ export class MicroserviceHealthComponent implements OnInit {
                 status: data.status,
                 systemUsage: data.systemCpuUsage,
                 memory: data.memory,
-              })).filter(item => item.podName != "branchName")
+              })).filter(item => item.podName != "branchName" && item.podName != "deploymentDate")
             }
           }))
         }));
@@ -64,15 +72,12 @@ export class MicroserviceHealthComponent implements OnInit {
       },
       error => {
         this.isLoading = false;  // Stop loading, hide the spinner
+        this.isInitialLoad = false; // Avoid spinner hanging on error
         console.error('Error fetching health data:', error);
       }
     );  
 
-    // Update last received date
-    this.lastReceivedDate = new Date();
-
     console.log('Filtered Data:', this.healthData);
-    console.log('Last Received Date:', this.lastReceivedDate);
   }
 
   onMicroServiceChange(){

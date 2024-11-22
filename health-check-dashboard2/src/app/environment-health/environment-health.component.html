@@ -5,8 +5,12 @@
       <div class="environment">{{ env.environment }}</div>
     </div>
     <div class="branch-text-container">
-      <div class="label">Branch Deployed: </div>
+      <div class="label">Branch Name: </div>
       <div class="branch">{{ env.data.branchName}}</div>
+    </div>
+    <div class="branch-text-container">
+      <div class="label">Deployment Date: </div>
+      <div class="branch">{{ env.data?.deploymentDate | date: 'short'}}</div>
     </div>
   </div>
    
@@ -23,6 +27,7 @@
             <tr>
               <th>Service Name</th>
               <th>Status</th>
+              <th># Pods</th>
               <th>Failed Pods</th>
             </tr>
           </thead>
@@ -34,6 +39,7 @@
                   {{ getDependentServiceStatus(service) }}
                 </span>
               </td>
+              <td>{{ service.totalPods }}</td>
               <td>{{ service.failedPods && service.failedPods.length > 0 ? service.failedPods : '-' }}</td>
             </tr>
           </tbody>

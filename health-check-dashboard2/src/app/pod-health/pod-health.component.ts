@@ -38,7 +38,7 @@ export class PodHealthComponent implements OnInit {
 
   updateChartData() {
     this.initializeBarChart(this.memoryUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => removePercent(pod.memory)), 'Memory Usage' );
-    this.initializeBarChart(this.systemUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => removePercent(pod.systemUsage)), 'System Usage' );
+    this.initializeBarChart(this.systemUsageCanvasId, this.pods.map(pod => pod.podName),this.pods.map(pod => removePercent(pod.systemUsage)), 'CPU Usage' );
   }
   
 
@@ -64,8 +64,13 @@ export class PodHealthComponent implements OnInit {
             min: 0,
             max: 5,
             ticks: {
-                stepSize: 0.25
-            }}
+                stepSize: 0.5
+            },
+            title: {
+              display: true,
+              text: '(%) used'
+            }
+          }
         }
       } 
     })
