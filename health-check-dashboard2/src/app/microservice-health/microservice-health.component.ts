@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { HealthCheckService } from '../services/health-check.service';
 import { HealthData, MicroserviceData } from '../interface/microservice-interfaces';
 import { Subscription, interval } from 'rxjs';
-
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-microservice-health',
@@ -12,12 +12,13 @@ import { Subscription, interval } from 'rxjs';
 export class MicroserviceHealthComponent implements OnInit {
   @Input() healthData: any;
 
-  selectedMicroservice: string | null = null;
+  selectedMicroservice: string = "none";
   selectedMicroserviceObj: any = '';
-  selectedEnvironment: string | null = null;
+  selectedEnvironment: string = "none";
   filer_option_environments: any = [];
   filteredData: any;
   all_option: any = 'All';
+  none_option: any = 'none';
   lastReceivedDate: Date | null = null;
   private subscription: Subscription = new Subscription();
   isLoading = false;
@@ -74,29 +75,55 @@ export class MicroserviceHealthComponent implements OnInit {
     console.log('Last Received Date:', this.lastReceivedDate);
   }
 
-
   onMicroServiceChange(){
-    console.log(this.filer_option_environments);
-    if(this.selectedMicroservice === this.all_option){
-      this.filteredData = [...this.healthData];
+    if(this.selectedMicroservice === this.all_option || this.selectedMicroservice === 'none'){
+      this.filteredData = cloneDeep(this.healthData);
+      if(this.selectedEnvironment === this.all_option || this.selectedEnvironment === 'none'){
+        //do nothing for now
+      } else{
+        this.filteredData = cloneDeep(this.healthData);
+        this.onEnvironmentChange1();
+      }
     } else{
-      this.filer_option_environments = this.healthData.filter((service: any) => {
-        return service.microServiceName === this.selectedMicroservice
-        })[0].data;
-      this.filteredData =  this.healthData.filter((service: any) => {
-        return service.microServiceName === this.selectedMicroservice
-        });
+      if(this.selectedEnvironment === this.all_option || this.selectedEnvironment === 'none'){
+        this.filer_option_environments = this.healthData.find((service: any) => {
+          return service.microServiceName === this.selectedMicroservice
+          }).data;
+
+        this.filteredData = cloneDeep(this.healthData.filter((service: any) => {
+          return service.microServiceName === this.selectedMicroservice
+          }));
+      } else{
+        this.filteredData = cloneDeep(this.healthData.filter((service: any) => {
+          return service.microServiceName === this.selectedMicroservice
+          }));
+          this.onEnvironmentChange1();
+      }
     }
    
   }
-  // else if(this.selectedEnvironment !== this.all_option && this.selectedMicroservice === this.all_option){
-  //   this.filteredData = this.filteredData.map((service: any) => {
-  //     service.data = service.data.filter((env: any) => {
-  //       return env.environment === this.selectedEnvironment
-  //     })
-  //   })
-  // }
-  
+
+  onEnvironmentChange1(){
+    if(this.selectedEnvironment === this.all_option || this.selectedEnvironment === 'none'){
+      this.onMicroServiceChange();
+    } else{
+      this.filteredData.forEach((service: any) => {
+        let microService = cloneDeep(this.healthData.find((healthDataService: any) => 
+           healthDataService.microServiceName === service.microServiceName
+          ));
+          service.data = microService.data
+       });
+      this.filteredData.forEach((service: any) => {
+        debugger;
+        let environment = service.data.find((env: any) => {
+          return env.environment === this.selectedEnvironment
+          });
+        service.data = [environment];
+     });
+     console.log(this.filteredData);
+    }
+  }
+
   onEnvironmentChange(){
     if(this.selectedEnvironment === this.all_option && this.selectedMicroservice !== this.all_option){
       this.filteredData[0].data = this.filer_option_environments;
@@ -110,4 +137,6 @@ export class MicroserviceHealthComponent implements OnInit {
     }
    
   }
+
+
 }
